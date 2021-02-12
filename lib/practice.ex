@@ -8,7 +8,10 @@ defmodule Practice do
   """
 
   def double(x) do
-    2 * x
+		cond do
+			is_number(x) -> 2 * x
+			true -> :error
+		end
   end
 
   def calc(expr) do
@@ -18,8 +21,16 @@ defmodule Practice do
 
   def factor(x) do
     # Maybe delegate this too.
-    [1,2,x]
+		if is_integer(x) do
+			Practice.Factor.prime_factors(x)
+		else
+			Practice.Factor.prime_factors(elem(Integer.parse(x),0))
+		end
+		
+    #[1,2,x]
   end
 
-  # TODO: Add a palindrome? function.
+	def palindrome(word) do
+		word == String.reverse(word)	
+	end
 end

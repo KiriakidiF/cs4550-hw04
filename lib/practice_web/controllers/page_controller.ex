@@ -6,7 +6,7 @@ defmodule PracticeWeb.PageController do
   end
 
   def double(conn, %{"x" => x}) do
-    {x, _} = Integer.parse(x)
+    {x, _} = Float.parse(x)
     y = Practice.double(x)
     render conn, "double.html", x: x, y: y
   end
@@ -17,10 +17,13 @@ defmodule PracticeWeb.PageController do
   end
 
   def factor(conn, %{"x" => x}) do
-    y = Practice.factor(x)
+    y = inspect(Practice.factor(x))
     render conn, "factor.html", x: x, y: y
   end
 
-  # TODO: Add an action for palindrome.
-  # TODO: Add a template for palindrome over in lib/*_web/templates/page/??.html.eex
-end
+	def palindrome(conn, %{"x" => word}) do
+    result = Practice.palindrome(word)
+    render conn, "palindrome.html", x: word, y: result
+  end
+
+ end
